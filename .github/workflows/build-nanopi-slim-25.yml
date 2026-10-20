@@ -4,6 +4,7 @@ on:
     branches: [master]
     paths:
       - '.github/workflows/build-nanopi-slim-25.yml'
+      - 'rockchip/build25.sh'
   workflow_dispatch:
 
 permissions:
