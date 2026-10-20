@@ -6,6 +6,9 @@ on:
       - '.github/workflows/build-nanopi-slim-25.yml'
       - 'rockchip/build25.sh'
       - 'files/etc/uci-defaults/99-custom.sh'
+  # Daily 08:00 China Standard Time (UTC+8) = 00:00 UTC.
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
