@@ -1,6 +1,10 @@
 #!/bin/bash
 # Log file for debugging
 source shell/custom-packages.sh
+# NanoPi R5S/R2S: the four requested apps and required proxy cores.
+if [ "$PROFILE" = "friendlyarm_nanopi-r5s" ] || [ "$PROFILE" = "friendlyarm_nanopi-r2s" ]; then
+  CUSTOM_PACKAGES="geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-passwall2 luci-i18n-passwall2-zh-cn luci-app-openclash luci-compat kmod-tun kmod-inet-diag bash ip-full unzip luci-app-ramfree luci-i18n-ramfree-zh-cn luci-app-cpufreq luci-i18n-cpufreq-zh-cn ca-bundle"
+fi
 source shell/switch_repository.sh
 echo "第三方软件包: $CUSTOM_PACKAGES"
 LOGFILE="/tmp/uci-defaults-log.txt"
@@ -54,20 +58,20 @@ cat repositories.conf
 PACKAGES=""
 PACKAGES="$PACKAGES curl"
 PACKAGES="$PACKAGES openssh-sftp-server"
-PACKAGES="$PACKAGES luci-i18n-diskman-zh-cn"
+: # Nonessential plugin excluded
 PACKAGES="$PACKAGES luci-i18n-package-manager-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-firewall-zh-cn"
-PACKAGES="$PACKAGES luci-theme-argon"
-PACKAGES="$PACKAGES luci-app-argon-config"
-PACKAGES="$PACKAGES luci-i18n-argon-config-zh-cn"
-PACKAGES="$PACKAGES luci-i18n-ttyd-zh-cn"
+: # Nonessential plugin excluded
+: # Nonessential plugin excluded
+: # Nonessential plugin excluded
+: # Nonessential plugin excluded
 # 判断是否需要编译 Docker 插件
 if [ "$INCLUDE_DOCKER" = "yes" ]; then
     PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
     echo "Adding package: luci-i18n-dockerman-zh-cn"
 fi
 # 文件管理器
-PACKAGES="$PACKAGES luci-i18n-filemanager-zh-cn"
+: # Nonessential plugin excluded
 # ======== shell/custom-packages.sh =======
 # 合并imm仓库以外的第三方插件
 PACKAGES="$PACKAGES $CUSTOM_PACKAGES"
