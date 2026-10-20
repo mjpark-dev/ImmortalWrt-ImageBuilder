@@ -78,9 +78,6 @@ elif [ "$count" -gt 1 ]; then
     uci set network.wan6=interface
     uci set network.wan6.device="$wan_ifname"
     uci set network.wan6.proto='dhcpv6'
-    # Request upstream IPv6 prefix delegation when available.
-    uci set network.wan6.reqaddress='try'
-    uci set network.wan6.reqprefix='auto'
 
     # 查找 br-lan 设备 section
     section=$(uci show network | awk -F '[.=]' '/\.@?device\[\d+\]\.name=.br-lan.$/ {print $2; exit}')
@@ -100,14 +97,6 @@ elif [ "$count" -gt 1 ]; then
     uci set network.lan.proto='static'
     # 多网口设备 支持修改为别的管理后台地址 在Github Action 的UI上自行输入即可 
     uci set network.lan.netmask='255.255.255.0'
-    # Advertise a delegated IPv6 /64 on the LAN; no public IPv6 without upstream PD.
-    uci set network.lan.ip6assign='64'
-    uci -q get dhcp.lan >/dev/null || uci set dhcp.lan=dhcp
-    uci set dhcp.lan.interface='lan'
-    uci set dhcp.lan.ra='server'
-    uci set dhcp.lan.dhcpv6='server'
-    uci set dhcp.lan.ra_slaac='1'
-    uci commit dhcp
     # 设置路由器管理后台地址
     IP_VALUE_FILE="/etc/config/custom_router_ip.txt"
     if [ -f "$IP_VALUE_FILE" ]; then
