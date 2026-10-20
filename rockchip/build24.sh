@@ -3,7 +3,7 @@
 source shell/custom-packages.sh
 # NanoPi R5S/R2S: the four requested apps and required proxy cores.
 if [ "$PROFILE" = "friendlyarm_nanopi-r5s" ] || [ "$PROFILE" = "friendlyarm_nanopi-r2s" ]; then
-  CUSTOM_PACKAGES="geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-openclash luci-compat kmod-tun kmod-inet-diag bash ip-full unzip luci-app-ramfree luci-i18n-ramfree-zh-cn luci-app-cpufreq luci-i18n-cpufreq-zh-cn ca-bundle"
+  CUSTOM_PACKAGES="geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-passwall luci-i18n-passwall-zh-cn luci-app-homeproxy luci-i18n-homeproxy-zh-cn luci-app-ttyd luci-app-openclash luci-compat kmod-tun kmod-inet-diag bash ip-full unzip luci-app-ramfree luci-i18n-ramfree-zh-cn luci-app-cpufreq luci-i18n-cpufreq-zh-cn ca-bundle luci-app-pushbot luci-i18n-pushbot-zh-cn"
 fi
 source shell/switch_repository.sh
 echo "第三方软件包: $CUSTOM_PACKAGES"
@@ -49,6 +49,16 @@ else
   arch aarch64_cortex-a53 15' repositories.conf
 fi
 
+
+# 24.10.x NanoPi: install pinned PushBot IPK release, not APK.
+if [ "$PROFILE" = "friendlyarm_nanopi-r5s" ] || [ "$PROFILE" = "friendlyarm_nanopi-r2s" ]; then
+  mkdir -p /home/build/immortalwrt/packages
+  PUSHBOT_BASE="https://github.com/zzsj0928/luci-app-pushbot/releases/download/luci-app-pushbot-v6.01-r5"
+  for asset in luci-app-pushbot_6.01-r5_all.ipk luci-i18n-pushbot-zh-cn_6.01-r5_all.ipk; do
+    curl -fL --retry 3 --connect-timeout 20 -o "/home/build/immortalwrt/packages/$asset" "$PUSHBOT_BASE/$asset" || exit 1
+    test -s "/home/build/immortalwrt/packages/$asset" || exit 1
+  done
+fi
 
 # 输出调试信息
 echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始构建固件..."
