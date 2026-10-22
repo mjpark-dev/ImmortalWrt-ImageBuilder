@@ -3,7 +3,7 @@
 source shell/custom-packages.sh
 # NanoPi R5S/R2S: the four requested apps and required proxy cores.
 if [ "$PROFILE" = "friendlyarm_nanopi-r5s" ] || [ "$PROFILE" = "friendlyarm_nanopi-r2s" ]; then
-  CUSTOM_PACKAGES="geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-passwall luci-i18n-passwall-zh-cn luci-app-homeproxy luci-i18n-homeproxy-zh-cn luci-app-ttyd luci-app-openclash luci-compat kmod-tun kmod-inet-diag bash ip-full unzip luci-app-ramfree luci-i18n-ramfree-zh-cn luci-app-cpufreq luci-i18n-cpufreq-zh-cn ca-bundle luci-app-pushbot luci-i18n-pushbot-zh-cn"
+  CUSTOM_PACKAGES="geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-passwall luci-i18n-passwall-zh-cn luci-app-homeproxy luci-i18n-homeproxy-zh-cn luci-app-ttyd luci-i18n-ttyd-zh-cn luci-app-openclash luci-compat kmod-tun kmod-inet-diag bash ip-full unzip luci-app-ramfree luci-i18n-ramfree-zh-cn luci-app-cpufreq luci-i18n-cpufreq-zh-cn ca-bundle luci-app-pushbot luci-i18n-pushbot-zh-cn"
 fi
 source shell/switch_repository.sh
 echo "第三方软件包: $CUSTOM_PACKAGES"
