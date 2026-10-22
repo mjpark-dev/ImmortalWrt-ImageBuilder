@@ -76,11 +76,6 @@ PACKAGES="$PACKAGES luci-theme-argon luci-app-argon-config luci-i18n-argon-confi
 : # Nonessential plugin excluded
 : # Nonessential plugin excluded
 : # Nonessential plugin excluded
-# 判断是否需要编译 Docker 插件
-if [ "$INCLUDE_DOCKER" = "yes" ]; then
-    PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
-    echo "Adding package: luci-i18n-dockerman-zh-cn"
-fi
 # 文件管理器
 : # Nonessential plugin excluded
 # ======== shell/custom-packages.sh =======
