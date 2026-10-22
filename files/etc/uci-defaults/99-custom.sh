@@ -127,8 +127,15 @@ elif [ "$count" -gt 1 ]; then
     uci commit network
 fi
 
-# 设置所有网口可访问网页终端
-uci delete ttyd.@ttyd[0].interface
+# 网页终端：仅允许 LAN 接口访问，避免将 ttyd 直接暴露到 WAN。
+# 若固件集成了 ttyd，则设置开机自启并启动服务。
+if [ -x /etc/init.d/ttyd ]; then
+    uci -q set "ttyd.@ttyd[0].interface=@lan"
+    uci -q commit ttyd
+    /etc/init.d/ttyd enable
+    /etc/init.d/ttyd restart
+    echo "ttyd enabled on LAN" >>"$LOGFILE"
+fi
 
 # 设置所有网口可连接 SSH
 uci set dropbear.@dropbear[0].Interface=''
