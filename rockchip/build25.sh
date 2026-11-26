@@ -5,14 +5,14 @@ source shell/apk-custom-packages.sh
 if [ "$PROFILE" = "friendlyarm_nanopi-r5s" ] || [ "$PROFILE" = "friendlyarm_nanopi-r2s" ]; then
   # Pin the PushBot APKs used by both NanoPi images.
   pushbot_release=https://github.com/zzsj0928/luci-app-pushbot/releases/download/luci-app-pushbot-v6.01-r17
-  mkdir -p packages || exit 1
+  mkdir -p extra-packages/pushbot || exit 1
   for pkg in luci-app-pushbot luci-i18n-pushbot-zh-cn; do
     apk_name="$pkg-6.01-r17.apk"
-    curl -fL --retry 3 "$pushbot_release/$apk_name" -o "packages/$apk_name" || exit 1
+    curl -fL --retry 3 "$pushbot_release/$apk_name" -o "extra-packages/pushbot/$apk_name" || exit 1
   done
   sha256sum -c <<'PUSHBOT_SUMS' || exit 1
-107bfbdb40e9bcb86f58ccf5b99939aaf6f54601b6b8b996eadecb65b3afa346  packages/luci-app-pushbot-6.01-r17.apk
-5594a68559d7009753f98e2f0481f45bbb862820cc8944db4e4d38fc2947a4ee  packages/luci-i18n-pushbot-zh-cn-6.01-r17.apk
+107bfbdb40e9bcb86f58ccf5b99939aaf6f54601b6b8b996eadecb65b3afa346  extra-packages/pushbot/luci-app-pushbot-6.01-r17.apk
+5594a68559d7009753f98e2f0481f45bbb862820cc8944db4e4d38fc2947a4ee  extra-packages/pushbot/luci-i18n-pushbot-zh-cn-6.01-r17.apk
 PUSHBOT_SUMS
   CUSTOM_PACKAGES="luci-app-appfilter luci-i18n-appfilter-zh-cn luci-app-pushbot luci-i18n-pushbot-zh-cn geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-passwall luci-i18n-passwall-zh-cn luci-app-ttyd luci-i18n-ttyd-zh-cn luci-app-openclash luci-compat kmod-tun kmod-inet-diag bash ip-full unzip luci-app-ramfree luci-i18n-ramfree-zh-cn luci-app-cpufreq luci-i18n-cpufreq-zh-cn ca-bundle"
 fi
