@@ -14,7 +14,7 @@ if [ "$PROFILE" = "friendlyarm_nanopi-r5s" ] || [ "$PROFILE" = "friendlyarm_nano
 107bfbdb40e9bcb86f58ccf5b99939aaf6f54601b6b8b996eadecb65b3afa346  packages/luci-app-pushbot-6.01-r17.apk
 5594a68559d7009753f98e2f0481f45bbb862820cc8944db4e4d38fc2947a4ee  packages/luci-i18n-pushbot-zh-cn-6.01-r17.apk
 PUSHBOT_SUMS
-  CUSTOM_PACKAGES="luci-app-pushbot luci-i18n-pushbot-zh-cn geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-passwall luci-i18n-passwall-zh-cn luci-app-homeproxy luci-i18n-homeproxy-zh-cn luci-app-ttyd luci-i18n-ttyd-zh-cn luci-app-openclash luci-compat kmod-tun kmod-inet-diag bash ip-full unzip luci-app-ramfree luci-i18n-ramfree-zh-cn luci-app-cpufreq luci-i18n-cpufreq-zh-cn ca-bundle"
+  CUSTOM_PACKAGES="luci-app-appfilter luci-i18n-appfilter-zh-cn luci-app-pushbot luci-i18n-pushbot-zh-cn geoview xray-core sing-box hysteria kmod-nft-socket kmod-nft-tproxy luci-app-passwall luci-i18n-passwall-zh-cn luci-app-homeproxy luci-i18n-homeproxy-zh-cn luci-app-ttyd luci-i18n-ttyd-zh-cn luci-app-openclash luci-compat kmod-tun kmod-inet-diag bash ip-full unzip luci-app-ramfree luci-i18n-ramfree-zh-cn luci-app-cpufreq luci-i18n-cpufreq-zh-cn ca-bundle"
 fi
 echo "第三方APK软件包: $CUSTOM_PACKAGES"
 LOGFILE="/tmp/uci-defaults-log.txt"
